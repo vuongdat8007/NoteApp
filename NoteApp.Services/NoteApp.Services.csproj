@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
+		<AssemblyName>NoteApp.Services</AssemblyName>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NoteApp.Core\NoteApp.Core.csproj" />
+  </ItemGroup>
+
+</Project>

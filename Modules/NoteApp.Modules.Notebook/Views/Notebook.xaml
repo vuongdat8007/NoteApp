@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="NoteApp.Modules.Notebook.Views.Notebook"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             ui:ThemeManager.RequestedTheme="Dark"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="NotebookListboxDataTemplate">
+                <DockPanel>
+                    <ui:FontIcon Glyph="{Binding IconFont}" VerticalAlignment="Center" Margin="12,0,0,0" />
+                    <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding TotalItems}" Margin="10,0,10,0"/>
+                    </Grid>
+                </DockPanel>
+            </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/NoteApp.Core;component/Resources/Styles/ChromelessButton.xaml" />
+                <ResourceDictionary Source="/NoteApp.Modules.Notebook;component/Styles/NotebookListbox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Fill="{DynamicResource NavigationViewExpandedPaneBackground}" IsHitTestVisible="False" Grid.Row="0" Grid.RowSpan="3"/>
+
+        <TextBlock Text="NoteApp"
+                   FontSize="19" FontWeight="DemiBold" FontStyle="Italic" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Margin="0" Foreground="{DynamicResource SystemControlBackgroundChromeWhiteBrush}" Grid.Row="0" Grid.Column="1" ToolTip="{Binding Version}"
+                   WindowChrome.IsHitTestVisibleInChrome="True"/>
+
+        <DockPanel Grid.Row="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+                <ListBox
+                    ItemsSource="{Binding NotebookList}"                
+                    ItemContainerStyle="{StaticResource NotebookListboxStyle}"
+                    ItemTemplate="{StaticResource NotebookListboxDataTemplate}"                
+                    SelectedItem="{Binding SelectedNotebook}" 
+                    Background="{DynamicResource SystemControlTransparentBrush}"
+                    BorderThickness="0"
+                    Margin="0"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                    VirtualizingStackPanel.IsVirtualizing="True"
+                    VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                    VirtualizingStackPanel.VirtualizationMode="Recycling">
+                </ListBox>
+            </ScrollViewer>
+        </DockPanel>
+        <Button Grid.Row="2"
+                Command="{Binding ChangeThemeCommand}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="7,0,0,0"
+                Style="{DynamicResource ChromelessButton}"         
+                ToolTip="Toggle Theme">
+            <ui:FontIcon Glyph="&#xE771;" Margin="0,-2,0,0" />
+        </Button>
+        <Button Grid.Row="2"
+                Command="{Binding ShowSettingsDialogCommand}"                
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Margin="0,0,7,0"
+                Style="{DynamicResource ChromelessButton}"         
+                ToolTip="Settings">
+            <ui:SymbolIcon Symbol="Setting"/>
+        </Button>
+    </Grid>
+</UserControl>
