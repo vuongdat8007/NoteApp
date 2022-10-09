@@ -18,4 +18,5 @@ A notes and reminders management application while learning WPF/MVVM and Prism.
 - tefterly https://github.com/nelinory/tefterly
 
 ### Screenshot:
+<img src="Login-Screenshot.png" alt="Login Screenshot" width="900"/>
 <img src="Screenshot.png" alt="Screenshot" width="900"/>
