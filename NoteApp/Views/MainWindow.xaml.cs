@@ -34,6 +34,7 @@ namespace NoteApp.Views
 
             // TODO: Read the app theme from settings
             ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+            this.WindowState = WindowState.Maximized;
         }
 
         protected override void OnSourceInitialized(EventArgs e)

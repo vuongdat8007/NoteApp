@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Prism.Ioc;
+using Prism.Modularity;
 
 namespace NoteApp.Views
 {
@@ -62,7 +64,17 @@ namespace NoteApp.Views
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            
+        }
+
+        private void btnCreate_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
