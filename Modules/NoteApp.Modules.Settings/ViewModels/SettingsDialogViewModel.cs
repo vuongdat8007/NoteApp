@@ -108,6 +108,12 @@ namespace NoteApp.Modules.Settings.ViewModels
             set { _settingsService.Settings.Search.TermMinimumLength = value; }
         }
 
+        public bool SaveNotesInSQLServer
+        {
+            get { return _settingsService.Settings.General.SaveNotesInSQLServer; }
+            set { _settingsService.Settings.General.SaveNotesInSQLServer = value; }
+        }
+
         public Tuple<string, Brush> SearchResultsHighlightColorSelectedItem
         {
             get

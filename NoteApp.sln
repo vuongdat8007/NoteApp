@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteApp.Tests", "NoteApp.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteApp.Modules.Settings", "Modules\NoteApp.Modules.Settings\NoteApp.Modules.Settings.csproj", "{19EBBB88-E9DD-4B82-B0B0-DB9273E40B16}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModelDB", "ModelDB", "{8562D3CB-ECF3-483D-8F77-D9ABE23BB9C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContextDB", "ContextDB\ContextDB.csproj", "{FF3D67FA-088C-4FB5-9086-D842ED32C198}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,10 @@ Global
 		{19EBBB88-E9DD-4B82-B0B0-DB9273E40B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19EBBB88-E9DD-4B82-B0B0-DB9273E40B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19EBBB88-E9DD-4B82-B0B0-DB9273E40B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF3D67FA-088C-4FB5-9086-D842ED32C198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF3D67FA-088C-4FB5-9086-D842ED32C198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF3D67FA-088C-4FB5-9086-D842ED32C198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF3D67FA-088C-4FB5-9086-D842ED32C198}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +86,7 @@ Global
 		{C2386FE0-1F20-4550-ABC8-3B45D65D651C} = {E00A643E-ED62-4E0E-A291-CD23FB7FE7B9}
 		{DE1C9BB2-44E2-44D7-A454-1605E3B6C7B8} = {E00A643E-ED62-4E0E-A291-CD23FB7FE7B9}
 		{19EBBB88-E9DD-4B82-B0B0-DB9273E40B16} = {E00A643E-ED62-4E0E-A291-CD23FB7FE7B9}
+		{FF3D67FA-088C-4FB5-9086-D842ED32C198} = {8562D3CB-ECF3-483D-8F77-D9ABE23BB9C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {054F8412-21EE-4DBB-B639-A524259177D3}

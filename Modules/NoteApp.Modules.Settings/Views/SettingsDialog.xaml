@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             prism:ViewModelLocator.AutoWireViewModel="True">
+             prism:ViewModelLocator.AutoWireViewModel="True" Height="507">
 
     <UserControl.Resources>
         <Style x:Key="ComboBoxHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
@@ -19,10 +19,12 @@
     <ui:SimpleStackPanel Spacing="12">
         <TabControl
                 Style="{StaticResource TabControlPivotStyle}"
-                MinHeight="420" MinWidth="400" MaxWidth="400">
+                MinHeight="620" MinWidth="400" MaxWidth="400">
             <TabItem Header="General" IsSelected="True">
-                <ui:SimpleStackPanel
-                    Margin="0,10,0,0" Spacing="12">
+                <ui:SimpleStackPanel Spacing="12" Height="512">
+                    <ui:ToggleSwitch
+            Header="Save Notes in SQL Database Server"
+            IsOn="{Binding SaveNotesInSQLServer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="376" HorizontalAlignment="Center" FontSize="18" FontWeight="Normal" />
                     <ui:ToggleSwitch
                         Header="Remember last used notebook category"
                         IsOn="{Binding RememberLastUsedCategorySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -30,8 +32,7 @@
                         Header="Remember application window placement on close"
                         IsOn="{Binding RememberAppWindowPlacementSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <GroupBox
-                        Header="Search"
-                        Margin="0,10,0,0">
+                        Header="Search">
                         <StackPanel>
                             <StackPanel>
                                 <TextBlock
@@ -92,8 +93,7 @@
                 </ui:SimpleStackPanel>
             </TabItem>
             <TabItem Header="Notes">
-                <ui:SimpleStackPanel
-                        Margin="0,10,0,0" Spacing="12">
+                <ui:SimpleStackPanel Spacing="12" Height="433">
                     <ui:ToggleSwitch
                         Header="Enable spell check in notes. A bit slow in large notes."
                         IsOn="False" />
@@ -164,7 +164,7 @@
                             <TextBlock>
                                 <Hyperlink
                                     Foreground="{Binding SelectedValue, ElementName=cmbHyperlinkColor, Mode=OneWay}">
-                                    https://github.com/nelinory/NoteApp
+                                    https://github.com/vuongdat8007/NoteApp
                                 </Hyperlink>
                             </TextBlock>
                         </StackPanel>
@@ -251,8 +251,22 @@
                             IsReadOnly="True"
                             Foreground="Gray"/>
                     </StackPanel>
+                    <StackPanel>
+                        <TextBlock
+                            Text="SQL Server address"
+                            Style="{StaticResource ComboBoxHeaderStyle}" />
+                        <TextBox
+                            Text="DESKTOP\SQLEXPRESS"
+                            IsReadOnly="False"
+                            />
+                        <TextBox 
+                            Text="NotesDB"
+                            IsReadOnly="False"
+                            />
+                    </StackPanel>
                 </ui:SimpleStackPanel>
             </TabItem>
         </TabControl>
+
     </ui:SimpleStackPanel>
 </UserControl>

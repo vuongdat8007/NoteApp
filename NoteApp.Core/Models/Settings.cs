@@ -21,6 +21,7 @@ namespace NoteApp.Core.Models
         public Notes Notes { get; set; }
         public Backup Backup { get; set; }
         public General General { get; set; }
+        public string SaveNotesInSQLServer { get; set; }
 
         public Settings()
         {
@@ -64,6 +65,7 @@ namespace NoteApp.Core.Models
         public bool RememberLastUsedCategory { get; set; } = true;
         public Guid LastUsedCategory { get; set; } = NotebookCategories.Default;
         public bool RememberAppWindowPlacement { get; set; } = true;
+        public bool SaveNotesInSQLServer { get; set; } = true;
         public WindowPlacement AppWindowPlacement { get; set; }
     }
 }

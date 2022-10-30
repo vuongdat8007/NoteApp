@@ -14,7 +14,7 @@ A notes management application while learning WPF/MVVM and Prism.
 ### References:
 - Brian Lagunas - PrismOutlook tutorial: https://github.com/brianlagunas/PrismOutlook
 (https://github.com/nelinory/NoteApp/actions/workflows/main-build-desktop.yml/badge.svg)
-
-
+- ModernLoginUI-WPF https://github.com/RJCodeAdvance/ModernLoginUI-WPF
+- tefterly https://github.com/nelinory/tefterly
 ### Screenshot:
 <img src="Screenshot.png" alt="Screenshot" width="900"/>

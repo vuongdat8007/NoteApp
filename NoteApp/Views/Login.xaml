@@ -117,14 +117,10 @@
                 <StackPanel Width="Auto"
                             Grid.Row="1"
                             Orientation="Vertical"
-                            Margin="0,0,0,0">
-                    <Image Source="/Spash.png"
-                           Width="600" Height="100"/>
-                </StackPanel>
+                            Margin="0,0,0,0"/>
                 <StackPanel Width="220"
                             Grid.Row="1"
-                            Orientation="Vertical"
-                            Margin="0,105,0,0">
+                            Orientation="Vertical">
                     
                     <TextBlock Text="Notes App"
                                Foreground="White"
