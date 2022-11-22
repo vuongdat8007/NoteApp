@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +14,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NoteApp.BUS;
+using NoteApp.DTO;
 using Prism.Ioc;
 using Prism.Modularity;
 
@@ -21,9 +26,23 @@ namespace NoteApp.Views
     /// </summary>
     public partial class Login : Window
     {
+        AccountBLL bllAccounts;
+        DataTable dt;
+        List<AccountDTO> listAccounts;
+        static string loggedInUser;
         public Login()
         {
             InitializeComponent();
+            bllAccounts = new AccountBLL();
+            dt = bllAccounts.getAllAccounts();
+            listAccounts = new List<AccountDTO>();
+            foreach (DataRow row in dt.Rows)
+            {
+                AccountDTO acc = new AccountDTO();
+                acc.Username = row["Username"];
+                acc.Password = row["Password"];
+                listAccounts.Add(acc);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,27 +73,72 @@ namespace NoteApp.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Close();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            try
+            {
+                if (ChkLoginForm())
+                {
+                    if (ChkLogin(txtUser.Text.ToString(), txtPass.Password.ToString()))
+                        loggedInUser = txtUser.Text.ToString();
+                        DialogResult = true;
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show( string.Format("Unknown error occurred {0}", exp.ToString()), "Notice", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            
+            DialogResult = true;
         }
 
         private void btnCreate_Click_1(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = true;
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private bool ChkLoginForm()
+        {
+            if (string.IsNullOrEmpty(txtUser.Text))
+            {
+                MessageBox.Show("Please enter username", "Notice", MessageBoxButton.OK,
+                    MessageBoxImage.Stop);
+                txtUser.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtPass.Password))
+            {
+                MessageBox.Show("Please enter your password", "Notice", MessageBoxButton.OK,
+                    MessageBoxImage.Stop);
+                txtPass.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private bool ChkLogin(string userName, string passWord)
+
+        {
+            foreach (AccountDTO acc in listAccounts)
+            {
+                if (acc.Username.ToString() == userName)
+                {
+                    return acc.Password.ToString() == passWord;
+                }
+            }
+            return false;
         }
     }
 }
