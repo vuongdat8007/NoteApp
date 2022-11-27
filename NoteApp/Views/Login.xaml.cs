@@ -83,8 +83,14 @@ namespace NoteApp.Views
                 if (ChkLoginForm())
                 {
                     if (ChkLogin(txtUser.Text.ToString(), txtPass.Password.ToString()))
+                    {
                         loggedInUser = txtUser.Text.ToString();
                         DialogResult = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unknown username or password", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             catch (Exception exp)
@@ -94,9 +100,30 @@ namespace NoteApp.Views
             }
         }
 
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                btnLogin_Click(sender, e);
+            }
+        }
+
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            try
+            {
+                AccountDTO acc = new AccountDTO();
+                acc.Username = txtCreateUser.Text;
+                acc.Password = txtCreatePass.Password.ToString();
+                listAccounts.Add(acc);
+                bllAccounts.AddAccount(acc);
+                DialogResult = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(string.Format("Unknown error occurred {0}", exp.ToString()), "Notice", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
 
         private void btnCreate_Click_1(object sender, RoutedEventArgs e)

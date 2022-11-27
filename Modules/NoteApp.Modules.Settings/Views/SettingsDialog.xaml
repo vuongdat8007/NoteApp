@@ -256,11 +256,11 @@
                             Text="SQL Server address"
                             Style="{StaticResource ComboBoxHeaderStyle}" />
                         <TextBox
-                            Text="DESKTOP\SQLEXPRESS"
+                            Text="{Binding NotesDBLocation, Mode=TwoWay}"
                             IsReadOnly="False"
                             />
                         <TextBox 
-                            Text="NotesDB"
+                            Text="{Binding NotesDB, Mode=TwoWay}"
                             IsReadOnly="False"
                             />
                     </StackPanel>

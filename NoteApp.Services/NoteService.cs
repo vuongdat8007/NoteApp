@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Windows.Documents;
 using NoteApp.Core;
 using NoteApp.Core.Models;
+using NoteApp;
 
 namespace NoteApp.Services
 {
@@ -262,6 +263,13 @@ namespace NoteApp.Services
             {
                 textRange.Save(fileStream, System.Windows.DataFormats.XamlPackage);
             }
+
+            note.AcceptChanges(); // marked as saved
+        }
+
+        private void SaveNoteSQL(Note note)
+        {
+            //NoteDTO WIP...
 
             note.AcceptChanges(); // marked as saved
         }

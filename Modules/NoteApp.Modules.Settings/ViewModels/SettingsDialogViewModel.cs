@@ -86,6 +86,17 @@ namespace NoteApp.Modules.Settings.ViewModels
             get { return _settingsService.Settings.NotesFileLocation; }
         }
 
+        public string NotesDBLocation
+        {
+            get { return _settingsService.Settings.General.NotesDBLocation; }
+            set { _settingsService.Settings.General.NotesDBLocation = value; }
+        }
+
+        public string NotesDB
+        {
+            get { return _settingsService.Settings.General.NotesDB; }
+            set { _settingsService.Settings.General.NotesDB = value; }
+        }
         #endregion
 
         #region General Settings

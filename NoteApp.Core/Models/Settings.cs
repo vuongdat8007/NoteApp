@@ -17,6 +17,8 @@ namespace NoteApp.Core.Models
         [JsonIgnore]
         public string NotesFileLocation { get { return Path.Combine(NotesLocation, "NoteApp.notes"); } }
 
+        public string NotesDBLocation { get { return ".\\SQLEXPRESS02"; } }
+
         public Search Search { get; set; }
         public Notes Notes { get; set; }
         public Backup Backup { get; set; }
@@ -67,5 +69,7 @@ namespace NoteApp.Core.Models
         public bool RememberAppWindowPlacement { get; set; } = true;
         public bool SaveNotesInSQLServer { get; set; } = true;
         public WindowPlacement AppWindowPlacement { get; set; }
+        public string NotesDBLocation { get; set; }
+        public string NotesDB { get; set; }
     }
 }

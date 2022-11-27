@@ -189,6 +189,7 @@
                                FontFamily="Montserrat"                             
                                Margin="0,15,0,0"/>
                                             <PasswordBox x:Name="txtPass"
+                                                         KeyDown="OnKeyDownHandler"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
@@ -374,7 +375,7 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"                           
                             Margin="0,50,0,0"
-                            Click="btnLogin_Click">
+                            Click="btnCreate_Click">
                                                 <Button.Style>
                                                     <Style TargetType="Button">
                                                         <Setter Property="Background" Value="#462AD8"/>

@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace NoteApp.DAL
 {
-    public class AccountsDAL
+    public class NotesDAL
     {
         private DataConnection dc;
         private SqlDataAdapter da;
         private SqlCommand cmd;
 
-        public AccountsDAL()
+        public NotesDAL()
         {
             dc = new DataConnection();
         }
 
-        public DataTable getAllAccounts()
+        public DataTable getAllNotes()
         {
             //B1: tạo câu lệnh sql để lấy toàn bộ tài khoản
-            string sql = "select * from Accounts";
+            string sql = "select * from Notes";
             //b2: tạo một kết nối đên sql
             SqlConnection con = dc.GetConnect();
             //b3: khởi tạo đối tượng của lớp sqlDataAdapter
@@ -38,18 +38,42 @@ namespace NoteApp.DAL
             return dt;
         }
 
-        //ham them tài khoản
-        public bool AddAccount(AccountDTO acc)
+        internal bool DeleteNote(NoteDTO note)
         {
-            string sql = "insert into Accounts values(@Username,@Password)";
+            string sql = "delete Notes where Id=@Id";
             SqlConnection con = dc.GetConnect();
             try
             {
                 cmd = new SqlCommand(sql, con);
                 con.Open();
-                cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = acc.Username;
-                cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = acc.Password;
-                
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = note.ID;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        //ham them note vào SQL Database
+        // WIP...
+        public bool AddNote(NoteDTO newNote)
+        {
+            string sql = "insert into Notes values(@Title,@Content,@Reminder,@Username)";
+            SqlConnection con = dc.GetConnect();
+            try
+            {
+                cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = newNote.Title;
+                cmd.Parameters.Add("@Content", SqlDbType.NVarChar).Value = newNote.Content;
+                cmd.Parameters.Add("@Reminder", SqlDbType.NChar).Value = newNote.Reminder;
+                cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = newNote.Username;
+                //cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = newNote.Password;
+
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -60,11 +84,11 @@ namespace NoteApp.DAL
             return true;
         }
 
-        
 
-        public DataTable SearchAccount(string acc, string password)
+        // Search note: WIP...
+        public DataTable SearchNote(string searchString)
         {
-            string sql = "select * from Accounts where Username = N'" + acc + "' AND Password = N'" + password + "'";
+            string sql = "select * from Notes where Title LIKE %N'" + searchString + "'% OR Content LIKE %N'" + searchString + "'%";
 
             SqlConnection con = dc.GetConnect();
             da = new SqlDataAdapter(sql, con);
