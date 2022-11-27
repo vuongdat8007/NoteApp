@@ -9,6 +9,8 @@ using System.Windows.Documents;
 using NoteApp.Core;
 using NoteApp.Core.Models;
 using NoteApp;
+using NoteApp.Services.DTO;
+using NoteApp.Services.BUS;
 
 namespace NoteApp.Services
 {
@@ -22,11 +24,13 @@ namespace NoteApp.Services
         // services
         private readonly ISettingsService _settingsService;
 
+        public NoteBLL notesBLL { get; private set; }
+
         public NoteService(ISettingsService settingsService)
         {
             // attach all required services
             _settingsService = settingsService;
-
+            notesBLL = new NoteBLL();
             LoadNotebooks();
             LoadNotes();
         }
@@ -270,7 +274,11 @@ namespace NoteApp.Services
         private void SaveNoteSQL(Note note)
         {
             //NoteDTO WIP...
-
+            TextRange textRange = new TextRange(note.Document.ContentStart, note.Document.ContentEnd);
+            NoteDTO noteDTO = new NoteDTO();
+            noteDTO.Title = note.Title;
+            noteDTO.Content = note.Content;
+            notesBLL.AddNote(noteDTO);
             note.AcceptChanges(); // marked as saved
         }
 

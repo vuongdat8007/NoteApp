@@ -5,6 +5,10 @@
 		<AssemblyName>NoteApp.Services</AssemblyName>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\NoteApp.Core\NoteApp.Core.csproj" />
   </ItemGroup>
